@@ -3,6 +3,19 @@ import { BookHeart, GraduationCap, Sparkles } from 'lucide-react'
 export function Cover() {
   return (
     <header className="relative overflow-hidden rounded-3xl border border-border bg-card px-6 py-10 text-center shadow-sm md:px-12 md:py-14">
+      {/* شعار عبدالرحمن أعلى اليسار */}
+      <img
+        src="/abdelrahman-mark.png"
+        alt="شعار عبدالرحمن"
+        className="pointer-events-none absolute left-3 top-3 z-10 h-12 w-auto opacity-90 md:left-5 md:top-5 md:h-16"
+      />
+      {/* شعار جامعة الأزهر أعلى اليمين */}
+      <img
+        src="/azhar-mark.png"
+        alt="شعار جامعة الأزهر"
+        className="pointer-events-none absolute right-3 top-3 z-10 size-12 object-contain opacity-90 md:right-5 md:top-5 md:size-16"
+      />
+
       {/* زخرفة ناعمة في الخلفية */}
       <div
         aria-hidden="true"

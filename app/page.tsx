@@ -40,6 +40,9 @@ export default function Page() {
 
       <footer className="mt-14 rounded-2xl border border-border bg-card px-6 py-6 text-center font-body text-sm text-foreground/60">
         <p>ملخص دراسي للمراجعة والمذاكرة — نسأل الله التوفيق والسداد</p>
+        <p className="mt-2 text-foreground/70">
+          جميع الحقوق محفوظة &copy; Abdo Aiad
+        </p>
       </footer>
     </main>
   )
