@@ -1,4 +1,16 @@
 import type { ReactNode } from 'react'
+
+/* نوع شريحة العرض التقديمي */
+export type DeckSlide = { id: string; label: string; node: ReactNode }
+/* بيانات عنوان الفصل */
+export type ChapterMeta = {
+  id: string
+  number: string
+  title: string
+  subtitle: string
+  icon: ReactNode
+}
+
 import {
   BookOpen,
   Scale,
@@ -278,7 +290,7 @@ export function NumberedCards({
   )
 }
 
-/* أهم الأفكار (خلاصة الدرس) */
+/* أهم الأفكار (خلاصة ال��رس) */
 export function KeyIdeas({ items }: { items: ReactNode[] }) {
   return (
     <div className="my-3 rounded-xl border border-verse/30 bg-verse-soft/70 p-4">

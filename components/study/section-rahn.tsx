@@ -1,3 +1,4 @@
+import { Fragment } from 'react'
 import {
   ChapterHeading,
   Topic,
@@ -16,19 +17,25 @@ import {
   TrueFalse,
   MultipleChoice,
   EssayQA,
+  type DeckSlide,
+  type ChapterMeta,
 } from './blocks'
 import { Lock, ListChecks, Scale, Users, Boxes, HandCoins } from 'lucide-react'
 
-export function SectionRahn() {
-  return (
-    <div>
-      <ChapterHeading
-        number="٣"
-        title="الرَّهْن"
-        subtitle="عقد توثيقٍ يُحبس به مالٌ وثيقةً بدينٍ يُستوفى منه عند تعذّر الوفاء"
-        icon={<Lock className="size-7" />}
-      />
+export const rahnMeta: ChapterMeta = {
+  id: 'rahn',
+  number: '٣',
+  title: 'الرَّهْن',
+  subtitle:
+    'عقد توثيقٍ يُحبس به مالٌ وثيقةً بدينٍ يُستوفى منه عند تعذّر الوفاء',
+  icon: <Lock className="size-7" />,
+}
 
+export const rahnSlides: DeckSlide[] = [
+  {
+    id: 'rahn-def',
+    label: 'تعريف الرهن',
+    node: (
       <Topic title="تعريف الرهن" icon={<ListChecks className="size-6" />}>
         <Defn label="لغة">
           مصدر «رهن»، ويأتي بمعنى الحبس (كل ما احتُبس به شيء)، وبمعنى الثبات
@@ -45,7 +52,12 @@ export function SectionRahn() {
           reason="لأنه جعل المال وثيقةً بدينٍ يُستوفى منه عند التعذّر، ولو أُضيفت إليه كلمة «عقد» لكان أولى لبيان طبيعته."
         />
       </Topic>
-
+    ),
+  },
+  {
+    id: 'rahn-mashroo',
+    label: 'مشروعية الرهن',
+    node: (
       <Topic title="مشروعية الرهن" icon={<Scale className="size-6" />}>
         <Agreement>الرهن مشروعٌ في الجملة بلا خلاف.</Agreement>
         <Verse source="سورة البقرة: 283">
@@ -67,7 +79,12 @@ export function SectionRahn() {
           ]}
         />
       </Topic>
-
+    ),
+  },
+  {
+    id: 'rahn-hadar',
+    label: 'حكم الرهن في الحضر',
+    node: (
       <Topic title="حكم الرهن في الحضر" icon={<Scale className="size-6" />}>
         <Agreement>جواز الرهن في السفر عند عدم وجود الكاتب (للآية).</Agreement>
         <Mahall>اختلفوا في حكمه في الحضر.</Mahall>
@@ -92,8 +109,16 @@ export function SectionRahn() {
           reason="لأن عمل النبي ﷺ بالرهن في الحضر دليلٌ على أن ذكر السفر لبيان الغالب، والمخالف أخذ بمفهوم المخالفة وقد عارضه ما هو أقوى منه (وهو فعله ﷺ)."
         />
       </Topic>
-
-      <Topic title="مَن يصح الرهن منه (شروط العاقد)" icon={<Users className="size-6" />}>
+    ),
+  },
+  {
+    id: 'rahn-aaqid',
+    label: 'شروط العاقد',
+    node: (
+      <Topic
+        title="مَن يصح الرهن منه (شروط العاقد)"
+        icon={<Users className="size-6" />}
+      >
         <Agreement>
           يُشترط في الراهن والمرتهن أن يكون مختاراً غير مكرَه، جائزَ التصرف في
           المال (بالغاً عاقلاً رشيداً ممن يصح بيعه)؛ فكل من صحَّ بيعه صحَّ رهنه.
@@ -155,12 +180,19 @@ export function SectionRahn() {
           />
         </div>
       </Topic>
-
+    ),
+  },
+  {
+    id: 'rahn-marhoon',
+    label: 'شروط المرهون',
+    node: (
       <Topic title="شروط المرهون" icon={<Boxes className="size-6" />}>
         <P>
-          الضابط العام: <span className="font-semibold text-primary">«كل ما جاز
-          بيعه جاز رهنه»</span>؛ لأن مقصود الرهن البيعُ والاستيفاءُ من الثمن. وأهم
-          الشروط:
+          الضابط العام:{' '}
+          <span className="font-semibold text-primary">
+            «كل ما جاز بيعه جاز رهنه»
+          </span>
+          ؛ لأن مقصود الرهن البيعُ والاستيفاءُ من الثمن. وأهم الشروط:
         </P>
         <NumberedCards
           items={[
@@ -283,7 +315,7 @@ export function SectionRahn() {
           <Opinion
             order="القول الثالث"
             holders="الحنابلة في المذهب"
-            ruling="يجوز رهنه عند المدين به (لأنه مقبوضٌ حكماً في ذمت��) دون رهنه عند غيره."
+            ruling="يجوز رهنه عند المدين به (لأنه مقبوضٌ حكماً في ذمته) دون رهنه عند غيره."
           />
           <Tarjih
             choice="الراجح الجواز مطلقاً (القول الثاني)."
@@ -291,7 +323,12 @@ export function SectionRahn() {
           />
         </div>
       </Topic>
-
+    ),
+  },
+  {
+    id: 'rahn-mushaa',
+    label: 'رهن المُشَاع',
+    node: (
       <Topic title="رهن المُشَاع" icon={<Scale className="size-6" />}>
         <Agreement>
           إن رهن المشاعَ من شريكه فجائزٌ اتفاقاً (لإمكان القبض). والخلاف فيما لو
@@ -322,8 +359,16 @@ export function SectionRahn() {
           reason="لأن الحكمة من الرهن (البيع والاستيفاء من الثمن عند العجز) متحققةٌ في المشاع وغيره."
         />
       </Topic>
-
-      <Topic title="منافع المرهون والانتفاع به" icon={<HandCoins className="size-6" />}>
+    ),
+  },
+  {
+    id: 'rahn-manafi',
+    label: 'منافع المرهون',
+    node: (
+      <Topic
+        title="منافع المرهون والانتفاع به"
+        icon={<HandCoins className="size-6" />}
+      >
         <div className="rounded-xl border border-rose/25 bg-rose-soft/40 p-4">
           <p className="mb-2 font-heading font-bold text-rose">
             أولاً: دخول النماء في الرهن
@@ -421,7 +466,12 @@ export function SectionRahn() {
           />
         </div>
       </Topic>
-
+    ),
+  },
+  {
+    id: 'rahn-keyideas',
+    label: 'أهمّ الأفكار',
+    node: (
       <KeyIdeas
         items={[
           'الرهن من عقود التوثيقات، وهو جعلُ عينِ مالٍ وثيقةً بدينٍ يُستوفى منها عند تعذّر الوفاء، لا من عقود الاستثمار.',
@@ -433,38 +483,49 @@ export function SectionRahn() {
           'النماء المنفصل للراهن (على الراجح)، وللراهن الانتفاع بما لا يضرّ، وللمرتهن الانتفاع بالمركوب والمحلوب بقدر النفقة (على الراجح).',
         ]}
       />
-
-      <QuizHeading>النشاط التقييمي لدرس الرهن</QuizHeading>
-
-      <TrueFalse
-        items={[
-          {
-            q: 'الرهن من عقود الاستثمار.',
-            answer: false,
-            note: 'الرهن من عقود التوثيقات التي يُستوثق بها الدّين، لا من عقود الاستثمار.',
-          },
-          {
-            q: 'أجمع العلماء على مشروعية الرهن في الحضر والسفر معاً.',
-            answer: false,
-            note: 'اتفقوا على السفر، واختلفوا في الحضر؛ فمنعه مجاهد والضحاك، والراجح جوازه فيه.',
-          },
-          {
-            q: 'يصحّ الرهن من الصبي غير المميّز.',
-            answer: false,
-            note: 'لا يصحّ من غير المميّز لعدم أهليّته، ويصحّ من المميّز بإذن وليّه على الراجح.',
-          },
-          {
-            q: 'يجوز رهن الإنسان الحرّ.',
-            answer: false,
-            note: 'لا يصحّ رهن الحرّ لأنه ليس بمالٍ متقوّمٍ يصح بيعه والاستيفاء من ثمنه.',
-          },
-          {
-            q: 'الضابط في المرهون أن كلّ ما جاز بيعه جاز رهنه.',
-            answer: true,
-          },
-        ]}
-      />
-
+    ),
+  },
+  {
+    id: 'rahn-tf',
+    label: 'صح وخطأ',
+    node: (
+      <>
+        <QuizHeading>النشاط التقييمي لدرس الرهن</QuizHeading>
+        <TrueFalse
+          items={[
+            {
+              q: 'الرهن من عقود الاستثمار.',
+              answer: false,
+              note: 'الرهن من عقود التوثيقات التي يُستوثق بها الدّين، لا من عقود الاستثمار.',
+            },
+            {
+              q: 'أجمع العلماء على مشروعية الرهن في الحضر والسفر معاً.',
+              answer: false,
+              note: 'اتفقوا على السفر، واختلفوا في الحضر؛ فمنعه مجاهد والضحاك، والراجح جوازه فيه.',
+            },
+            {
+              q: 'يصحّ الرهن من الصبي غير المميّز.',
+              answer: false,
+              note: 'لا يصحّ من غير المميّز لعدم أهليّته، ويصحّ من المميّز بإذن وليّه على الراجح.',
+            },
+            {
+              q: 'يجوز رهن الإنسان الحرّ.',
+              answer: false,
+              note: 'لا يصحّ رهن الحرّ لأنه ليس بمالٍ متقوّمٍ يصح بيعه والاستيفاء من ثمنه.',
+            },
+            {
+              q: 'الضابط في المرهون أن كلّ ما جاز بيعه جاز رهنه.',
+              answer: true,
+            },
+          ]}
+        />
+      </>
+    ),
+  },
+  {
+    id: 'rahn-mcq',
+    label: 'اختيار من متعدد',
+    node: (
       <MultipleChoice
         items={[
           {
@@ -494,7 +555,12 @@ export function SectionRahn() {
           },
         ]}
       />
-
+    ),
+  },
+  {
+    id: 'rahn-essay',
+    label: 'أسئلة مقالية',
+    node: (
       <EssayQA
         items={[
           {
@@ -515,6 +581,22 @@ export function SectionRahn() {
           },
         ]}
       />
+    ),
+  },
+]
+
+export function SectionRahn() {
+  return (
+    <div>
+      <ChapterHeading
+        number={rahnMeta.number}
+        title={rahnMeta.title}
+        subtitle={rahnMeta.subtitle}
+        icon={rahnMeta.icon}
+      />
+      {rahnSlides.map((s) => (
+        <Fragment key={s.id}>{s.node}</Fragment>
+      ))}
     </div>
   )
 }

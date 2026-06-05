@@ -1,3 +1,4 @@
+import { Fragment } from 'react'
 import {
   ChapterHeading,
   Topic,
@@ -16,19 +17,25 @@ import {
   TrueFalse,
   MultipleChoice,
   EssayQA,
+  type DeckSlide,
+  type ChapterMeta,
 } from './blocks'
 import { ShieldAlert, Clock, ListChecks, Scale, XCircle } from 'lucide-react'
 
-export function SectionAib() {
-  return (
-    <div>
-      <ChapterHeading
-        number="١"
-        title="خِيَار العَيْب"
-        subtitle="حق العاقد في فسخ العقد أو إمضائه بسبب عيبٍ اطّلع عليه في المعقود عليه"
-        icon={<ShieldAlert className="size-7" />}
-      />
+export const aibMeta: ChapterMeta = {
+  id: 'aib',
+  number: '١',
+  title: 'خِيَار العَيْب',
+  subtitle:
+    'حق العاقد في فسخ العقد أو إمضائه بسبب عيبٍ اطّلع عليه في المعقود عليه',
+  icon: <ShieldAlert className="size-7" />,
+}
 
+export const aibSlides: DeckSlide[] = [
+  {
+    id: 'aib-def',
+    label: 'تعريف العيب',
+    node: (
       <Topic title="تعريف العيب" icon={<ListChecks className="size-6" />}>
         <Defn label="لغة">
           مصدر «عابَ»، يقال: عاب الشيءُ يَعِيبُه عَيباً إذا صار ذا عيب. والمَعَاب:
@@ -40,7 +47,12 @@ export function SectionAib() {
           صحيحاً، وغلب على جنس المعقود عليه عدمُه، وأمنت عاقبته.
         </Defn>
       </Topic>
-
+    ),
+  },
+  {
+    id: 'aib-mashroo',
+    label: 'مشروعية خيار العيب',
+    node: (
       <Topic title="مشروعية خيار العيب" icon={<Scale className="size-6" />}>
         <Agreement>اتفق الفقهاء على ثبوت خيار العيب في الجملة.</Agreement>
         <Verse source="سورة النساء: 29">
@@ -71,8 +83,16 @@ export function SectionAib() {
           ]}
         />
       </Topic>
-
-      <Topic title="العيب الذي يثبت به الخيار (ضابطه)" icon={<Scale className="size-6" />}>
+    ),
+  },
+  {
+    id: 'aib-dabit',
+    label: 'ضابط العيب',
+    node: (
+      <Topic
+        title="العيب الذي يثبت به الخيار (ضابطه)"
+        icon={<Scale className="size-6" />}
+      >
         <Agreement>
           يثبت الرد بالعيب المؤثر الذي جرت العادة بالسلامة منه (كمحرّك سيارة لا
           يعمل، وأرضٍ زراعية صخرية)، ولا يثبت بالعيب اليسير الذي لا يؤثر في العين
@@ -104,8 +124,16 @@ export function SectionAib() {
           reason="لأن العرف هو المعتبَر في باب العيوب، فيشمل ما نقصت به القيمة أو العين أو المنفعة."
         />
       </Topic>
-
-      <Topic title="وقت خيار العيب: على الفور أم التراخي؟" icon={<Clock className="size-6" />}>
+    ),
+  },
+  {
+    id: 'aib-waqt',
+    label: 'وقت خيار العيب',
+    node: (
+      <Topic
+        title="وقت خيار العيب: على الفور أم التراخي؟"
+        icon={<Clock className="size-6" />}
+      >
         <Agreement>
           ليس لخيار العيب وقتٌ محدد يبدأ عنده، بل يثبت للمشتري متى ظهر العيب مهما
           طال الزمن. والخلاف في الرد بعد العلم به.
@@ -135,7 +163,12 @@ export function SectionAib() {
           reason="لأن في التراخي ضرراً بالبائع والضرر يُزال، وتكفي المدة المعقولة لاكتشاف الشخص العادي للعيب."
         />
       </Topic>
-
+    ),
+  },
+  {
+    id: 'aib-shuroot',
+    label: 'شروط خيار العيب',
+    node: (
       <Topic title="شروط خيار العيب" icon={<ListChecks className="size-6" />}>
         <NumberedCards
           items={[
@@ -170,9 +203,7 @@ export function SectionAib() {
           <p className="mb-2 font-heading font-bold text-rose">
             مسألة فرعية: لو حدث العيب بعد التسليم بسببٍ سابقٍ عليه
           </p>
-          <P>
-            (كعبدٍ سرق عند البائع فقُطعت يده بعد التسليم): هل يثبت الخيار؟
-          </P>
+          <P>(كعبدٍ سرق عند البائع فقُطعت يده بعد التسليم): هل يثبت الخيار؟</P>
           <Opinion
             order="القول الأول"
             holders="أبو حنيفة، والشافعية في الأصح، والحنابلة"
@@ -196,7 +227,7 @@ export function SectionAib() {
           <Opinion
             order="القول الأول"
             holders="الحنفية، والشافعية في وجه"
-            ruling="صحيح، ويبرأ البائع من كل عيبٍ ظاهرٍ أو خفي��ّ، علم به أو لم يعلم."
+            ruling="صحيح، ويبرأ البائع من كل عيبٍ ظاهرٍ أو خفيّ، علم به أو لم يعلم."
             evidence={[
               'حديث «المسلمون على شروطهم».',
               'أن الخيار حقٌّ للمشتري وقد أسقطه، وإسقاط الحق الخالص جائز.',
@@ -225,8 +256,16 @@ export function SectionAib() {
           />
         </div>
       </Topic>
-
-      <Topic title="مقتضى ثبوت الخيار: هل يُمسك المبيع مع الرجوع بالأرش؟" icon={<Scale className="size-6" />}>
+    ),
+  },
+  {
+    id: 'aib-muqtada',
+    label: 'الإمساك مع الأرش',
+    node: (
+      <Topic
+        title="مقتضى ثبوت الخيار: هل يُمسك المبيع مع الرجوع بالأرش؟"
+        icon={<Scale className="size-6" />}
+      >
         <Agreement>
           للمشتري الردُّ أو الإمساكُ دون الرجوع بالأرش ما دام العيب غير مؤثرٍ على
           القيمة.
@@ -254,11 +293,19 @@ export function SectionAib() {
         />
         <Tarjih
           choice="الراجح قول الجمهور."
-          reason="لق��ة أدلتهم، ولأنه يحقق التوازن: المشتري يدفع الضرر بالرد أو الإمساك، والبائع لا يتضرر بنقص الثمن بغير رضاه."
+          reason="لقوة أدلتهم، ولأنه يحقق التوازن: المشتري يدفع الضرر بالرد أو الإمساك، والبائع لا يتضرر بنقص الثمن بغير رضاه."
         />
       </Topic>
-
-      <Topic title="انتهاء خيار العيب (أسبابه)" icon={<XCircle className="size-6" />}>
+    ),
+  },
+  {
+    id: 'aib-intiha',
+    label: 'انتهاء خيار العيب',
+    node: (
+      <Topic
+        title="انتهاء خيار العيب (أسبابه)"
+        icon={<XCircle className="size-6" />}
+      >
         <NumberedCards
           items={[
             {
@@ -307,7 +354,12 @@ export function SectionAib() {
           />
         </div>
       </Topic>
-
+    ),
+  },
+  {
+    id: 'aib-keyideas',
+    label: 'أهمّ الأفكار',
+    node: (
       <KeyIdeas
         items={[
           'الخيار حقُّ العاقد في إمضاء العقد أو فسخه، ومن أنواعه: خيار المجلس، وخيار الشرط، وخيار الرؤية، وخيار العيب.',
@@ -319,38 +371,49 @@ export function SectionAib() {
           'الراجح أن خيار العيب على الفور، وأنه ليس للمشتري الإمساكُ مع الأرش (قول الجمهور)، وينتهي بالرضا أو زوال العيب أو هلاك المبيع أو خروجه عن الملك أو حدوث عيبٍ جديد.',
         ]}
       />
-
-      <QuizHeading>النشاط التقييمي لدرس الخيارات</QuizHeading>
-
-      <TrueFalse
-        items={[
-          {
-            q: 'خيار المجلس تثبت مشروعيته بإجماع أهل العلم.',
-            answer: false,
-            note: 'ليس إجماعاً؛ فللمالكية والحنفية رأيٌ مخالفٌ في مشروعية خيار المجلس.',
-          },
-          {
-            q: 'يثبت خيار المجلس في عقد النكاح والخلع.',
-            answer: false,
-            note: 'لا يثبت في النكاح والخلع، وإنما يثبت في العقود اللازمة التي تقبل الفسخ كالبيع.',
-          },
-          {
-            q: 'خيار الشرط ثبت بمقتضى الشرع.',
-            answer: false,
-            note: 'بل ثبت بمقتضى الشرط الذي اشترطه العاقد في العقد، لا بمقتضى الشرع ابتداءً.',
-          },
-          {
-            q: 'يُرَدُّ المبيع بالعيب إذا كان العيب حادثاً أو طارئاً عند المشتري.',
-            answer: false,
-            note: 'يُشترط أن يكون العيب قديماً سابقاً على البيع أو التسليم، أما الطارئ عند المشتري فلا يُرَدُّ به.',
-          },
-          {
-            q: 'ينتهي خيار العيب بهلاك المبيع أو خروجه عن ملك المشتري.',
-            answer: true,
-          },
-        ]}
-      />
-
+    ),
+  },
+  {
+    id: 'aib-tf',
+    label: 'صح وخطأ',
+    node: (
+      <>
+        <QuizHeading>النشاط التقييمي لدرس الخيارات</QuizHeading>
+        <TrueFalse
+          items={[
+            {
+              q: 'خيار المجلس تثبت مشروعيته بإجماع أهل العلم.',
+              answer: false,
+              note: 'ليس إجماعاً؛ فللمالكية والحنفية رأيٌ مخالفٌ في مشروعية خيار المجلس.',
+            },
+            {
+              q: 'يثبت خيار المجلس في عقد النكاح والخلع.',
+              answer: false,
+              note: 'لا يثبت في النكاح والخلع، وإنما يثبت في العقود اللازمة التي تقبل الفسخ كالبيع.',
+            },
+            {
+              q: 'خيار الشرط ثبت بمقتضى الشرع.',
+              answer: false,
+              note: 'بل ثبت بمقتضى الشرط الذي اشترطه العاقد في العقد، لا بمقتضى الشرع ابتداءً.',
+            },
+            {
+              q: 'يُرَدُّ المبيع بالعيب إذا كان العيب حادثاً أو طارئاً عند المشتري.',
+              answer: false,
+              note: 'يُشترط أن يكون العيب قديماً سابقاً على البيع أو التسليم، أما الطارئ عند المشتري فلا يُرَدُّ به.',
+            },
+            {
+              q: 'ينتهي خيار العيب بهلاك المبيع أو خروجه عن ملك المشتري.',
+              answer: true,
+            },
+          ]}
+        />
+      </>
+    ),
+  },
+  {
+    id: 'aib-mcq',
+    label: 'اختيار من متعدد',
+    node: (
       <MultipleChoice
         items={[
           {
@@ -384,7 +447,12 @@ export function SectionAib() {
           },
         ]}
       />
-
+    ),
+  },
+  {
+    id: 'aib-essay',
+    label: 'أسئلة مقالية',
+    node: (
       <EssayQA
         items={[
           {
@@ -405,6 +473,22 @@ export function SectionAib() {
           },
         ]}
       />
+    ),
+  },
+]
+
+export function SectionAib() {
+  return (
+    <div>
+      <ChapterHeading
+        number={aibMeta.number}
+        title={aibMeta.title}
+        subtitle={aibMeta.subtitle}
+        icon={aibMeta.icon}
+      />
+      {aibSlides.map((s) => (
+        <Fragment key={s.id}>{s.node}</Fragment>
+      ))}
     </div>
   )
 }

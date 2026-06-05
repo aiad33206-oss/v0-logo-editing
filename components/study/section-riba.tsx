@@ -1,3 +1,4 @@
+import { Fragment } from 'react'
 import {
   ChapterHeading,
   Topic,
@@ -16,19 +17,24 @@ import {
   TrueFalse,
   MultipleChoice,
   EssayQA,
+  type DeckSlide,
+  type ChapterMeta,
 } from './blocks'
 import { Coins, ListChecks, Scale, BadgeInfo } from 'lucide-react'
 
-export function SectionRiba() {
-  return (
-    <div>
-      <ChapterHeading
-        number="٢"
-        title="الرِّبَا"
-        subtitle="حقيقته وأنواعه وحكمه وعلّته وجريانه في الأصناف"
-        icon={<Coins className="size-7" />}
-      />
+export const ribaMeta: ChapterMeta = {
+  id: 'riba',
+  number: '٢',
+  title: 'الرِّبَا',
+  subtitle: 'حقيقته وأنواعه وحكمه وعلّته وجريانه في الأصناف',
+  icon: <Coins className="size-7" />,
+}
 
+export const ribaSlides: DeckSlide[] = [
+  {
+    id: 'riba-def',
+    label: 'تعريف الربا وأنواعه',
+    node: (
       <Topic title="تعريف الربا وأنواعه" icon={<ListChecks className="size-6" />}>
         <Defn label="لغة">الزيادة.</Defn>
         <Defn label="اصطلاحاً">
@@ -36,7 +42,9 @@ export function SectionRiba() {
           تأخيرٍ في البدلين أو أحدهما. وقيل: فضلُ مالٍ بلا عوضٍ في معاوضة مالٍ
           بمالٍ مشروطٍ في المعاوضة.
         </Defn>
-        <p className="mt-2 font-heading font-bold text-primary">أنواعه الأربعة:</p>
+        <p className="mt-2 font-heading font-bold text-primary">
+          أنواعه الأربعة:
+        </p>
         <NumberedCards
           items={[
             {
@@ -58,7 +66,12 @@ export function SectionRiba() {
           ]}
         />
       </Topic>
-
+    ),
+  },
+  {
+    id: 'riba-hukm',
+    label: 'حكم الربا',
+    node: (
       <Topic title="حكم الربا" icon={<Scale className="size-6" />}>
         <Agreement>
           اتفق الفقهاء على تحريم الربا في المعاملات، وأن كل قرضٍ جرَّ نفعاً
@@ -78,12 +91,18 @@ export function SectionRiba() {
           «وربا الجاهلية موضوع، وأوّلُ ربًا أضعُ ربانا، ربا عباس بن عبد المطلب،
           فإنه موضوعٌ كله» (من خطبة حجة الوداع)
         </Hadith>
-        <Hadith>
-          «اجتنبوا السبع الموبقات... وأكلِ الربا» (الحديث)
-        </Hadith>
+        <Hadith>«اجتنبوا السبع الموبقات... وأكلِ الربا» (الحديث)</Hadith>
       </Topic>
-
-      <Topic title="جريان الربا في الأصناف الستة وغيرها (علّة الربا)" icon={<Scale className="size-6" />}>
+    ),
+  },
+  {
+    id: 'riba-illa',
+    label: 'علّة الربا',
+    node: (
+      <Topic
+        title="جريان الربا في الأصناف الستة وغيرها (علّة الربا)"
+        icon={<Scale className="size-6" />}
+      >
         <Agreement>
           ثبوت الربا في الأصناف الستة (الذهب، الفضة، البُر، الشعير، التمر، الملح)
           لحديثَي عبادة بن الصامت وأبي سعيد الخدري، وجريانه في كل مطعومٍ مقتاتٍ
@@ -144,7 +163,9 @@ export function SectionRiba() {
         <div className="mt-3 flex gap-2 rounded-xl border border-opinion/25 bg-opinion-soft px-4 py-3">
           <BadgeInfo className="mt-1 size-5 shrink-0 text-opinion" />
           <P>
-            <span className="font-semibold text-opinion">فائدة من خلاصة الأفكار: </span>
+            <span className="font-semibold text-opinion">
+              فائدة من خلاصة الأفكار:{' '}
+            </span>
             قرّر المؤلف في موضع الخلاصة أن المعوَّل عليه فقهاً أن علّة الربا في
             النقدين «مطلق الثمنية»، وفي الأصناف الأربعة الباقية «الاقتيات
             والادّخار» (تعليل المالكية)؛ لأن النقدين قِيَمُ المتلفات وأثمان
@@ -152,7 +173,12 @@ export function SectionRiba() {
           </P>
         </div>
       </Topic>
-
+    ),
+  },
+  {
+    id: 'riba-fadl',
+    label: 'حكم ربا الفضل',
+    node: (
       <Topic title="حكم ربا الفضل" icon={<Scale className="size-6" />}>
         <Agreement>
           اتفق الجمهور على تحريم ربا الفضل، ولم يخالف إلا ابن عباس ثم رجع لمّا
@@ -170,7 +196,12 @@ export function SectionRiba() {
           ]}
         />
       </Topic>
-
+    ),
+  },
+  {
+    id: 'riba-bay',
+    label: 'البيع المشتمل على الربا',
+    node: (
       <Topic title="حكم البيع المشتمل على الربا" icon={<Scale className="size-6" />}>
         <Mahall>
           اتفقوا على تحريم البيع المشتمل على الربا، واختلفوا في أثره على العقد.
@@ -197,7 +228,12 @@ export function SectionRiba() {
           reason="لأن النهي عن الربا يعود إلى ذات العقد لا إلى وصفٍ خارجٍ عنه، والنهي إذا عاد إلى الذات اقتضى البطلان."
         />
       </Topic>
-
+    ),
+  },
+  {
+    id: 'riba-keyideas',
+    label: 'أهمّ الأفكار',
+    node: (
       <KeyIdeas
         items={[
           'الربا لغةً الزيادة، واصطلاحاً: فضلُ مالٍ بلا عوضٍ مشروطٍ في معاوضة مالٍ بمال، وهو محرَّمٌ بالكتاب والسنة والإجماع.',
@@ -209,37 +245,48 @@ export function SectionRiba() {
           'البيع المشتمل على الربا باطلٌ مردودٌ عند الجمهور، وفاسدٌ عند الحنفية.',
         ]}
       />
-
-      <QuizHeading>النشاط التقييمي لدرس الربا</QuizHeading>
-
-      <TrueFalse
-        items={[
-          {
-            q: 'الربا هو فضلُ مالٍ بلا عوضٍ غيرِ مشروطٍ في المعاوضة.',
-            answer: false,
-            note: 'الصواب أنه فضلُ مالٍ بلا عوضٍ مشروطٍ في المعاوضة، فالاشتراط ركنٌ في تحقّقه.',
-          },
-          {
-            q: 'أجمع العلماء على تحريم ربا الفضل دون خلاف.',
-            answer: false,
-            note: 'الإجماع منعقدٌ على تحريم ربا النَّسيئة، أما ربا الفضل فاتفق عليه الجمهور وخالف ابن عباس ثم رجع لمّا بلغه حديث عبادة.',
-          },
-          {
-            q: 'ربا النَّسيئة يقع في الأشياء المتحدة الجنس مع التأجيل في البدلين أو أحدهما.',
-            answer: true,
-          },
-          {
-            q: 'البيع المشتمل على الربا باطلٌ مردودٌ عند الجمهور.',
-            answer: true,
-          },
-          {
-            q: 'علّة الربا قاصرةٌ على الأصناف الستة المنصوص عليها فقط.',
-            answer: false,
-            note: 'العلّة متعدّيةٌ إلى غير الستة بحسب اختلاف الفقهاء فيها، ولم يقصرها على الستة إلا الظاهرية.',
-          },
-        ]}
-      />
-
+    ),
+  },
+  {
+    id: 'riba-tf',
+    label: 'صح وخطأ',
+    node: (
+      <>
+        <QuizHeading>النشاط التقييمي لدرس الربا</QuizHeading>
+        <TrueFalse
+          items={[
+            {
+              q: 'الربا هو فضلُ مالٍ بلا عوضٍ غيرِ مشروطٍ في المعاوضة.',
+              answer: false,
+              note: 'الصواب أنه فضلُ مالٍ بلا عوضٍ مشروطٍ في المعاوضة، فالاشتراط ركنٌ في تحقّقه.',
+            },
+            {
+              q: 'أجمع العلماء على تحريم ربا الفضل دون خلاف.',
+              answer: false,
+              note: 'الإجماع منعقدٌ على تحريم ربا النَّسيئة، أما ربا الفضل فاتفق عليه الجمهور وخالف ابن عباس ثم رجع لمّا بلغه حديث عبادة.',
+            },
+            {
+              q: 'ربا النَّسيئة يقع في الأشياء المتحدة الجنس مع التأجيل في البدلين أو أحدهما.',
+              answer: true,
+            },
+            {
+              q: 'البيع المشتمل على الربا باطلٌ مردودٌ عند الجمهور.',
+              answer: true,
+            },
+            {
+              q: 'علّة الربا قاصرةٌ على الأصناف الستة المنصوص عليها فقط.',
+              answer: false,
+              note: 'العلّة متعدّيةٌ إلى غير الستة بحسب اختلاف الفقهاء فيها، ولم يقصرها على الستة إلا الظاهرية.',
+            },
+          ]}
+        />
+      </>
+    ),
+  },
+  {
+    id: 'riba-mcq',
+    label: 'اختيار من متعدد',
+    node: (
       <MultipleChoice
         items={[
           {
@@ -269,7 +316,12 @@ export function SectionRiba() {
           },
         ]}
       />
-
+    ),
+  },
+  {
+    id: 'riba-essay',
+    label: 'أسئلة مقالية',
+    node: (
       <EssayQA
         items={[
           {
@@ -290,6 +342,22 @@ export function SectionRiba() {
           },
         ]}
       />
+    ),
+  },
+]
+
+export function SectionRiba() {
+  return (
+    <div>
+      <ChapterHeading
+        number={ribaMeta.number}
+        title={ribaMeta.title}
+        subtitle={ribaMeta.subtitle}
+        icon={ribaMeta.icon}
+      />
+      {ribaSlides.map((s) => (
+        <Fragment key={s.id}>{s.node}</Fragment>
+      ))}
     </div>
   )
 }

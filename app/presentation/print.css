@@ -1,0 +1,46 @@
+/* تنسيق طباعة العرض التقديمي (مستقل عن صفحة الموقع) */
+@media print {
+  @page {
+    size: A4 landscape;
+    margin: 0;
+  }
+
+  *,
+  *::before,
+  *::after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* إخفاء واجهة التحكم التفاعلية أثناء الطباعة */
+  .deck-ui {
+    display: none !important;
+  }
+
+  /* إظهار حاوية الطباعة فقط */
+  .deck-print {
+    display: block !important;
+  }
+
+  html,
+  body {
+    background: #ffffff !important;
+  }
+
+  .deck-print-page {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 100vh;
+    padding: 14mm 16mm;
+    break-after: page;
+    page-break-after: always;
+    display: flex;
+    flex-direction: column;
+    background: var(--background);
+  }
+
+  .deck-print-page:last-child {
+    break-after: auto;
+    page-break-after: auto;
+  }
+}
