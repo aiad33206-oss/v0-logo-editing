@@ -1,0 +1,171 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-body: var(--font-body), 'Tajawal Fallback';
+  --font-heading: var(--font-heading), 'Reem Kufi Fallback';
+  --font-quran: var(--font-quran), 'Amiri Fallback';
+  --font-display: var(--font-display), 'Aref Ruqaa Fallback';
+  --font-sans: var(--font-body);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+
+  --color-rose: var(--rose);
+  --color-rose-soft: var(--rose-soft);
+  --color-verse: var(--verse);
+  --color-verse-soft: var(--verse-soft);
+  --color-hadith: var(--hadith);
+  --color-hadith-soft: var(--hadith-soft);
+  --color-opinion: var(--opinion);
+  --color-opinion-soft: var(--opinion-soft);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+}
+
+:root {
+  --radius: 0.9rem;
+
+  /* خلفية باستيلية ناعمة وردية كريمية */
+  --background: #fbf4f1;
+  --foreground: #4b3640;
+
+  --card: #fffdfc;
+  --card-foreground: #4b3640;
+
+  /* اللون الرئيسي: توتي وردي راقٍ */
+  --primary: #a43c64;
+  --primary-foreground: #fffafc;
+
+  --secondary: #f6e7ee;
+  --secondary-foreground: #7a2f4e;
+
+  --muted: #f3ebe9;
+  --muted-foreground: #8a7079;
+
+  --accent: #f7e4dd;
+  --accent-foreground: #7a3c2e;
+
+  --border: #ecd8df;
+  --ring: #d18faa;
+
+  /* وردي للترجيح والعناوين الثانوية */
+  --rose: #a43c64;
+  --rose-soft: #fbe6ef;
+
+  /* أخضر هادئ للآيات */
+  --verse: #2f7d5b;
+  --verse-soft: #e8f5ee;
+
+  /* ذهبي / كهرماني للأحاديث */
+  --hadith: #9c6a1c;
+  --hadith-soft: #faf1de;
+
+  /* أزرق هادئ للأقوال الفقهية */
+  --opinion: #356d8c;
+  --opinion-soft: #e9f2f7;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    line-height: 1.9;
+  }
+  html {
+    @apply font-body;
+  }
+}
+
+@layer components {
+  /* بطاقة عامة */
+  .note-card {
+    @apply rounded-2xl border bg-card p-5 shadow-sm md:p-6;
+  }
+
+  /* صندوق الآية القرآنية */
+  .verse-box {
+    border: 1px solid color-mix(in srgb, var(--verse) 32%, transparent);
+    background: var(--verse-soft);
+    color: color-mix(in srgb, var(--verse) 88%, #1a3a2b);
+    border-radius: 1rem;
+    padding: 1rem 1.15rem;
+    font-family: var(--font-quran);
+    font-size: 1.35rem;
+    line-height: 2.2;
+  }
+
+  /* صندوق الحديث الشريف */
+  .hadith-box {
+    border: 1px solid color-mix(in srgb, var(--hadith) 34%, transparent);
+    background: var(--hadith-soft);
+    color: color-mix(in srgb, var(--hadith) 86%, #3a2a08);
+    border-radius: 1rem;
+    padding: 1rem 1.15rem;
+    font-family: var(--font-quran);
+    font-size: 1.2rem;
+    line-height: 2.1;
+  }
+
+  /* صندوق القول الفقهي */
+  .opinion-box {
+    border: 1px solid color-mix(in srgb, var(--opinion) 28%, transparent);
+    background: var(--opinion-soft);
+    border-radius: 1rem;
+    padding: 1rem 1.15rem;
+  }
+
+  /* صندوق الترجيح */
+  .tarjih-box {
+    border: 1.5px dashed color-mix(in srgb, var(--rose) 45%, transparent);
+    background: var(--rose-soft);
+    color: color-mix(in srgb, var(--rose) 88%, #3a1424);
+    border-radius: 1rem;
+    padding: 1rem 1.15rem;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-sm font-medium;
+  }
+}
+
+/* تحسينات الطباعة لحفظ الملف PDF / Word */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: #ffffff;
+  }
+  .note-card,
+  .verse-box,
+  .hadith-box,
+  .opinion-box,
+  .tarjih-box {
+    break-inside: avoid;
+  }
+  section {
+    break-inside: avoid-page;
+  }
+}
