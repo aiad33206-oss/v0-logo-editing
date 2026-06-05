@@ -5,9 +5,14 @@ import {
   Quote,
   Sparkles,
   CheckCircle2,
+  XCircle,
   ListChecks,
   GitCompareArrows,
   Layers,
+  Lightbulb,
+  HelpCircle,
+  PenLine,
+  CircleDot,
 } from 'lucide-react'
 
 /* عنوان قسم رئيسي (كتاب) */
@@ -267,6 +272,164 @@ export function NumberedCards({
             </span>
             {it.body ? <span> — {it.body}</span> : null}
           </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+/* أهم الأفكار (خلاصة الدرس) */
+export function KeyIdeas({ items }: { items: ReactNode[] }) {
+  return (
+    <div className="my-3 rounded-xl border border-verse/30 bg-verse-soft/70 p-4">
+      <p className="mb-3 flex items-center gap-2 font-heading text-xl font-bold text-verse">
+        <Lightbulb className="size-6" /> أهمّ الأفكار
+      </p>
+      <ol className="space-y-2.5">
+        {items.map((it, i) => (
+          <li key={i} className="flex gap-3 leading-loose">
+            <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-verse/15 font-heading text-sm font-bold text-verse">
+              {i + 1}
+            </span>
+            <span>{it}</span>
+          </li>
+        ))}
+      </ol>
+    </div>
+  )
+}
+
+/* عنوان كتلة الأنشطة التقييمية */
+export function QuizHeading({ children }: { children: ReactNode }) {
+  return (
+    <h3 className="mb-4 mt-2 flex items-center gap-2.5 border-b border-border pb-3 font-heading text-2xl text-rose">
+      <HelpCircle className="size-6" />
+      <span>{children}</span>
+    </h3>
+  )
+}
+
+/* أسئلة صح / خطأ مع الإجابة */
+export function TrueFalse({
+  items,
+}: {
+  items: { q: ReactNode; answer: boolean; note?: ReactNode }[]
+}) {
+  return (
+    <div className="my-3 rounded-xl border border-border bg-muted/30 p-4">
+      <p className="mb-3 font-heading font-bold text-primary">
+        ضع علامة (صح) أو (خطأ) — مع التصحيح:
+      </p>
+      <ul className="space-y-2.5">
+        {items.map((it, i) => (
+          <li
+            key={i}
+            className="rounded-lg border border-border/70 bg-card px-3.5 py-2.5 leading-loose"
+          >
+            <div className="flex items-start gap-2">
+              <span className="font-bold text-rose">{i + 1}.</span>
+              <span className="flex-1">{it.q}</span>
+              <span
+                className={`flex shrink-0 items-center gap-1 rounded-md px-2 py-0.5 text-sm font-bold ${
+                  it.answer
+                    ? 'bg-verse-soft text-verse'
+                    : 'bg-rose-soft text-rose'
+                }`}
+              >
+                {it.answer ? (
+                  <>
+                    <CheckCircle2 className="size-4" /> صح
+                  </>
+                ) : (
+                  <>
+                    <XCircle className="size-4" /> خطأ
+                  </>
+                )}
+              </span>
+            </div>
+            {it.note ? (
+              <p className="mt-1.5 pr-5 text-[0.95rem] text-muted-foreground">
+                <span className="font-semibold text-foreground">
+                  التصحيح:{' '}
+                </span>
+                {it.note}
+              </p>
+            ) : null}
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+
+/* أسئلة الاختيار من متعدد مع تمييز الصحيح */
+export function MultipleChoice({
+  items,
+}: {
+  items: { q: ReactNode; options: string[]; correct: number }[]
+}) {
+  return (
+    <div className="my-3 rounded-xl border border-border bg-muted/30 p-4">
+      <p className="mb-3 font-heading font-bold text-primary">
+        اختر الإجابة الصحيحة (المظلّلة هي الصحيحة):
+      </p>
+      <ol className="space-y-3">
+        {items.map((it, i) => (
+          <li key={i} className="leading-loose">
+            <p className="mb-1.5">
+              <span className="font-bold text-rose">{i + 1}.</span> {it.q}
+            </p>
+            <div className="flex flex-wrap gap-2 pr-5">
+              {it.options.map((op, j) => (
+                <span
+                  key={j}
+                  className={`flex items-center gap-1 rounded-lg px-3 py-1 text-[0.97rem] ${
+                    j === it.correct
+                      ? 'bg-verse text-white font-semibold'
+                      : 'border border-border bg-card text-muted-foreground'
+                  }`}
+                >
+                  {j === it.correct ? (
+                    <CheckCircle2 className="size-4" />
+                  ) : (
+                    <CircleDot className="size-3.5 opacity-50" />
+                  )}
+                  {op}
+                </span>
+              ))}
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  )
+}
+
+/* أسئلة مقالية مع إجابة نموذجية مختصرة */
+export function EssayQA({
+  items,
+}: {
+  items: { q: ReactNode; a: ReactNode }[]
+}) {
+  return (
+    <div className="my-3 space-y-3">
+      <p className="flex items-center gap-2 font-heading font-bold text-primary">
+        <PenLine className="size-5 text-rose" /> الأسئلة المقالية وإجاباتها
+        المختصرة:
+      </p>
+      {items.map((it, i) => (
+        <div
+          key={i}
+          className="rounded-xl border border-opinion/25 bg-opinion-soft/50 p-4"
+        >
+          <p className="mb-2 font-heading font-bold text-opinion">
+            <span className="ml-1">س{i + 1}:</span>
+            {it.q}
+          </p>
+          <p className="rounded-lg bg-card/70 px-3.5 py-2.5 leading-loose">
+            <span className="font-semibold text-opinion">الإجابة: </span>
+            {it.a}
+          </p>
         </div>
       ))}
     </div>
