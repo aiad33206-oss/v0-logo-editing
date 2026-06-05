@@ -2,6 +2,7 @@ import { Cover, TableOfContents } from '@/components/study/cover'
 import { SectionAib } from '@/components/study/section-aib'
 import { SectionRiba } from '@/components/study/section-riba'
 import { SectionRahn } from '@/components/study/section-rahn'
+import { DownloadPdf } from '@/components/study/download-pdf'
 
 export default function Page() {
   return (
@@ -9,6 +10,8 @@ export default function Page() {
       dir="rtl"
       className="mx-auto min-h-screen w-full max-w-4xl px-4 py-8 md:px-6 md:py-12"
     >
+      <DownloadPdf />
+
       <Cover />
       <TableOfContents />
 
