@@ -90,10 +90,10 @@ export function Defn({
 /* آية قرآنية */
 export function Verse({
   children,
-  ref: marja,
+  source: marja,
 }: {
   children: ReactNode
-  ref?: string
+  source?: string
 }) {
   return (
     <div className="verse-box my-3">
